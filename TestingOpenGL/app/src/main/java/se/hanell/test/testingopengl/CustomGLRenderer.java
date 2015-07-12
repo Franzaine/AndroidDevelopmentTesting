@@ -18,6 +18,7 @@ public class CustomGLRenderer implements GLSurfaceView.Renderer {
     private final float[] mProjectionMatrix = new float[16];
     private final float[] mViewMatrix = new float[16];
     private float[] mRotationMatrix = new float[16];
+    public volatile float mAngle;
 
     @Override
     public void onSurfaceCreated(GL10 gl, EGLConfig config) {
@@ -40,7 +41,7 @@ public class CustomGLRenderer implements GLSurfaceView.Renderer {
         // Create a rotation transformation for the triangle
         long time = SystemClock.uptimeMillis() % 4000L;
         float angle = 0.090f * ((int) time);
-        Matrix.setRotateM(mRotationMatrix, 0, angle, 0, 0, -1.0f);
+        Matrix.setRotateM(mRotationMatrix, 0, -mAngle, 0, 0, -1.0f);
 
         // Combine the rotation matrix with the projection and camera view
         // Note that the mMVPMatrix factor *must be first* in order
@@ -73,5 +74,13 @@ public class CustomGLRenderer implements GLSurfaceView.Renderer {
         GLES20.glCompileShader(shader);
 
         return shader;
+    }
+
+    public float getAngle(){
+        return mAngle;
+    }
+
+    public void setAngle(float angle){
+        mAngle = angle;
     }
 }
