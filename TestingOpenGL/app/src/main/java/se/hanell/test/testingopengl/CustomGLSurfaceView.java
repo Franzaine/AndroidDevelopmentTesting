@@ -13,6 +13,6 @@ public class CustomGLSurfaceView extends GLSurfaceView {
         setEGLContextClientVersion(2);
         customGLRenderer = new CustomGLRenderer();
         setRenderer(customGLRenderer);
-        setRenderMode(GLSurfaceView.RENDERMODE_WHEN_DIRTY);
+        //setRenderMode(GLSurfaceView.RENDERMODE_WHEN_DIRTY);
     }
 }
